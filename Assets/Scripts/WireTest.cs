@@ -6,12 +6,17 @@ public class WireTest : MonoBehaviour
     [SerializeField] float _shootSpeed = 1.0f;
     [SerializeField] float _springPower = 5f;
     [SerializeField] Color _lineColor = Color.white;
+    /// <summary>フックショットのインターバル</summary>
+    [SerializeField] float _interval = 1f;
 
     GameObject _player = null;
     Rigidbody _hookRb = null;
     Rigidbody _playerRb = null;
     LineRenderer _line = null;
     Vector3 _initialPosition = Vector3.zero;
+
+    /// <summary>フックショットのインターバルのインターバルを取得できます</summary>
+    public float Interval { get => _interval; set => _interval = value; }
 
     private void Start()
     {
