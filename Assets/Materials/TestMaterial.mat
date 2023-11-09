@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: TestMaterial
-  m_Shader: {fileID: 4800000, guid: 704e9d126c9be46458007207da1f2c85, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1864d6ecfab999e43ad6182f21fba004, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -74,7 +74,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -145,6 +145,7 @@ Material:
     - _Effectivity: 0.5
     - _EmiVal: 0
     - _EnvironmentReflections: 1
+    - _F0: 0.02
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -164,6 +165,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _Spec: 0
+    - _SpecPower: 3
     - _SpecularHighlights: 1
     - _Speed: 0.1
     - _SrcBlend: 1
