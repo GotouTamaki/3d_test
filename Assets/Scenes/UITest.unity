@@ -212,10 +212,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba32f510785b10c438ba04538742a3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 161385039}
-  _sprite:
-  - {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  _image: {fileID: 0}
+  _sprite: []
+  targetObject: {fileID: 1503373175}
+  rotationSpeed: {x: 0.1, y: 0.2}
+  reverse: 0
 --- !u!1 &296102798
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +227,6 @@ GameObject:
   m_Component:
   - component: {fileID: 296102802}
   - component: {fileID: 296102801}
-  - component: {fileID: 296102800}
   - component: {fileID: 296102799}
   m_Layer: 0
   m_Name: SubCamera
@@ -268,14 +268,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!81 &296102800
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296102798}
-  m_Enabled: 1
 --- !u!20 &296102801
 Camera:
   m_ObjectHideFlags: 0
@@ -327,7 +319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296102798}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.502277, y: 7.779344, z: -0.040899277}
+  m_LocalPosition: {x: -14.502277, y: 7.779344, z: -3.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -826,7 +818,7 @@ GameObject:
   - component: {fileID: 1503373177}
   - component: {fileID: 1503373176}
   m_Layer: 0
-  m_Name: RotetCube
+  m_Name: RotetableCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
