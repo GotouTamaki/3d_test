@@ -5,21 +5,29 @@ using UnityEngine.UI;
 public class PreviewTest : MonoBehaviour
 {
     [SerializeField] Image _image;
-    [SerializeField] Sprite[] _sprite;
+    [SerializeField] Sprite[] _sprites;
     [SerializeField] GameObject targetObject;
-    [SerializeField] Vector2 rotationSpeed = new Vector2(0.1f, 0.2f);
+    [SerializeField] float _interval = 1.0f;
+    [SerializeField] float rotationSpeed = 0.1f;
     [SerializeField] bool reverse;
 
     Camera mainCamera;
     Vector2 lastMousePosition;
+    int _spriteIndex = 0;
+    float _timer = 0;
 
     void Start()
     {
         //mainCamera = Camera.main;
+        _image = GetComponent<Image>();
+        _spriteIndex = 0;
+        _image.sprite = _sprites[_spriteIndex];
     }
 
     void Update()
     {
+        _timer += Time.deltaTime;
+
         if (Input.GetMouseButtonDown(0))
         {
             lastMousePosition = Input.mousePosition;
@@ -31,28 +39,80 @@ public class PreviewTest : MonoBehaviour
                 var x = (Input.mousePosition.y - lastMousePosition.y);
                 var y = (lastMousePosition.x - Input.mousePosition.x);
 
-                var newAngle = Vector3.zero;
-                newAngle.x = x * rotationSpeed.x;
-                newAngle.y = y * rotationSpeed.y;
+                //var newAngle = Vector3.zero;
+                //newAngle.x = x * rotationSpeed;
+                //newAngle.y = y * rotationSpeed;
 
-                targetObject.transform.Rotate(newAngle);
+                //targetObject.transform.Rotate(newAngle);
+
+                if (y > rotationSpeed && _timer >_interval)
+                {
+                    _spriteIndex++;
+
+                    if (_spriteIndex >= _sprites.Length)
+                    {
+                        _spriteIndex = 0;
+                    }
+
+                    _image.sprite = _sprites[_spriteIndex];
+                    _timer = 0;
+                }
+                else if (y < -rotationSpeed && _timer > _interval)
+                {
+                    _spriteIndex--;
+
+                    if (_spriteIndex <= 0)
+                    {
+                        _spriteIndex = _sprites.Length - 1;
+                    }
+
+                    _image.sprite = _sprites[_spriteIndex];
+                    _timer = 0;
+                }
+
                 lastMousePosition = Input.mousePosition;
 
-                Debug.Log($"XMove : {x}\nYMove : {y}");
+                Debug.Log($"XMove : {y} YMove : {x}\nSpriteIndex : {_spriteIndex}");
             }
             else
             {
                 var x = (lastMousePosition.y - Input.mousePosition.y);
                 var y = (Input.mousePosition.x - lastMousePosition.x);
 
-                var newAngle = Vector3.zero;
-                newAngle.x = x * rotationSpeed.x;
-                newAngle.y = y * rotationSpeed.y;
+                //var newAngle = Vector3.zero;
+                //newAngle.x = x * rotationSpeed;
+                //newAngle.y = y * rotationSpeed;
 
-                targetObject.transform.Rotate(newAngle);
+                //targetObject.transform.Rotate(newAngle);
+
+                if (y > rotationSpeed && _timer > _interval)
+                {
+                    _spriteIndex++;
+
+                    if (_spriteIndex >= _sprites.Length)
+                    {
+                        _spriteIndex = 0;
+                    }
+
+                    _image.sprite = _sprites[_spriteIndex];
+                    _timer = 0;
+                }
+                else if (y < -rotationSpeed && _timer > _interval)
+                {
+                    _spriteIndex--;
+
+                    if (_spriteIndex <= 0)
+                    {
+                        _spriteIndex = _sprites.Length - 1;
+                    }
+
+                    _image.sprite = _sprites[_spriteIndex];
+                    _timer = 0;
+                }
+
                 lastMousePosition = Input.mousePosition;
 
-                Debug.Log($"XMove : {x}\nYMove : {y}");
+                Debug.Log($"XMove : {y} YMove : {x}\nSpriteIndex : {_spriteIndex}");
             }
         }
     }

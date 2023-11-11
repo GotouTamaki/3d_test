@@ -213,9 +213,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _image: {fileID: 0}
-  _sprite: []
+  _sprites:
+  - {fileID: 21300000, guid: dac14d0cad762a647ba9ef1d46cd54cc, type: 3}
+  - {fileID: 21300000, guid: da24f7432d3c2734a82a2a37712a0e78, type: 3}
+  - {fileID: 21300000, guid: 0f22160588c77d4428239adf72adb429, type: 3}
+  - {fileID: 21300000, guid: d4a335915ac045142868461bf19fe4f7, type: 3}
+  - {fileID: 21300000, guid: 0714508eee3d07c418a4be9787f0c346, type: 3}
+  - {fileID: 21300000, guid: d13e7217293934742a1da524dd473fe7, type: 3}
+  - {fileID: 21300000, guid: f508e22eddb3c37499f74c298359b812, type: 3}
   targetObject: {fileID: 1503373175}
-  rotationSpeed: {x: 0.1, y: 0.2}
+  _interval: 0.15
+  rotationSpeed: 3
   reverse: 0
 --- !u!1 &296102798
 GameObject:
