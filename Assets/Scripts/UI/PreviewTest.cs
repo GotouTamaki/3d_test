@@ -15,6 +15,9 @@ public class PreviewTest : MonoBehaviour
     Vector2 lastMousePosition;
     int _spriteIndex = 0;
     float _timer = 0;
+    bool _mouseFlag = false;
+
+    public bool MouseFlag => _mouseFlag;
 
     void Start()
     {
@@ -26,93 +29,96 @@ public class PreviewTest : MonoBehaviour
 
     void Update()
     {
-        _timer += Time.deltaTime;
+        if (_mouseFlag)
+        {
+            _timer += Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            lastMousePosition = Input.mousePosition;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            if (!reverse)
+            if (Input.GetMouseButtonDown(0))
             {
-                var x = (Input.mousePosition.y - lastMousePosition.y);
-                var y = (lastMousePosition.x - Input.mousePosition.x);
-
-                //var newAngle = Vector3.zero;
-                //newAngle.x = x * rotationSpeed;
-                //newAngle.y = y * rotationSpeed;
-
-                //targetObject.transform.Rotate(newAngle);
-
-                if (y > rotationSpeed && _timer >_interval)
-                {
-                    _spriteIndex++;
-
-                    if (_spriteIndex >= _sprites.Length)
-                    {
-                        _spriteIndex = 0;
-                    }
-
-                    _image.sprite = _sprites[_spriteIndex];
-                    _timer = 0;
-                }
-                else if (y < -rotationSpeed && _timer > _interval)
-                {
-                    _spriteIndex--;
-
-                    if (_spriteIndex <= 0)
-                    {
-                        _spriteIndex = _sprites.Length - 1;
-                    }
-
-                    _image.sprite = _sprites[_spriteIndex];
-                    _timer = 0;
-                }
-
                 lastMousePosition = Input.mousePosition;
-
-                Debug.Log($"XMove : {y} YMove : {x}\nSpriteIndex : {_spriteIndex}");
             }
-            else
+            else if (Input.GetMouseButton(0))
             {
-                var x = (lastMousePosition.y - Input.mousePosition.y);
-                var y = (Input.mousePosition.x - lastMousePosition.x);
-
-                //var newAngle = Vector3.zero;
-                //newAngle.x = x * rotationSpeed;
-                //newAngle.y = y * rotationSpeed;
-
-                //targetObject.transform.Rotate(newAngle);
-
-                if (y > rotationSpeed && _timer > _interval)
+                if (!reverse)
                 {
-                    _spriteIndex++;
+                    var x = (Input.mousePosition.y - lastMousePosition.y);
+                    var y = (lastMousePosition.x - Input.mousePosition.x);
 
-                    if (_spriteIndex >= _sprites.Length)
+                    //var newAngle = Vector3.zero;
+                    //newAngle.x = x * rotationSpeed;
+                    //newAngle.y = y * rotationSpeed;
+
+                    //targetObject.transform.Rotate(newAngle);
+
+                    if (y > rotationSpeed && _timer > _interval)
                     {
-                        _spriteIndex = 0;
+                        _spriteIndex++;
+
+                        if (_spriteIndex >= _sprites.Length)
+                        {
+                            _spriteIndex = 0;
+                        }
+
+                        _image.sprite = _sprites[_spriteIndex];
+                        _timer = 0;
+                    }
+                    else if (y < -rotationSpeed && _timer > _interval)
+                    {
+                        _spriteIndex--;
+
+                        if (_spriteIndex <= 0)
+                        {
+                            _spriteIndex = _sprites.Length - 1;
+                        }
+
+                        _image.sprite = _sprites[_spriteIndex];
+                        _timer = 0;
                     }
 
-                    _image.sprite = _sprites[_spriteIndex];
-                    _timer = 0;
-                }
-                else if (y < -rotationSpeed && _timer > _interval)
-                {
-                    _spriteIndex--;
+                    lastMousePosition = Input.mousePosition;
 
-                    if (_spriteIndex <= 0)
+                    Debug.Log($"XMove : {y} YMove : {x}\nSpriteIndex : {_spriteIndex}");
+                }
+                else
+                {
+                    var x = (lastMousePosition.y - Input.mousePosition.y);
+                    var y = (Input.mousePosition.x - lastMousePosition.x);
+
+                    //var newAngle = Vector3.zero;
+                    //newAngle.x = x * rotationSpeed;
+                    //newAngle.y = y * rotationSpeed;
+
+                    //targetObject.transform.Rotate(newAngle);
+
+                    if (y > rotationSpeed && _timer > _interval)
                     {
-                        _spriteIndex = _sprites.Length - 1;
+                        _spriteIndex++;
+
+                        if (_spriteIndex >= _sprites.Length)
+                        {
+                            _spriteIndex = 0;
+                        }
+
+                        _image.sprite = _sprites[_spriteIndex];
+                        _timer = 0;
+                    }
+                    else if (y < -rotationSpeed && _timer > _interval)
+                    {
+                        _spriteIndex--;
+
+                        if (_spriteIndex <= 0)
+                        {
+                            _spriteIndex = _sprites.Length - 1;
+                        }
+
+                        _image.sprite = _sprites[_spriteIndex];
+                        _timer = 0;
                     }
 
-                    _image.sprite = _sprites[_spriteIndex];
-                    _timer = 0;
+                    lastMousePosition = Input.mousePosition;
+
+                    Debug.Log($"XMove : {y} YMove : {x}\nSpriteIndex : {_spriteIndex}");
                 }
-
-                lastMousePosition = Input.mousePosition;
-
-                Debug.Log($"XMove : {y} YMove : {x}\nSpriteIndex : {_spriteIndex}");
             }
         }
     }
