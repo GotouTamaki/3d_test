@@ -29,8 +29,8 @@ public class PreviewTest : MonoBehaviour
 
     void Update()
     {
-        if (_mouseFlag)
-        {
+        //if (_mouseFlag)
+        //{
             _timer += Time.deltaTime;
 
             if (Input.GetMouseButtonDown(0))
@@ -120,6 +120,6 @@ public class PreviewTest : MonoBehaviour
                     Debug.Log($"XMove : {y} YMove : {x}\nSpriteIndex : {_spriteIndex}");
                 }
             }
-        }
+        //}
     }
 }
