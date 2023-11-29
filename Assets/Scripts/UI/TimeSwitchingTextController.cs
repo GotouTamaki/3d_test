@@ -4,7 +4,7 @@ using UnityEngine.UI;
 /// <summary>
 /// テキストの文字送りを行う
 /// </summary>
-public class TextController : MonoBehaviour
+public class TimeSwitchingTextController : MonoBehaviour
 {
     [SerializeField, Header("シナリオを格納する")] string[] _scenarios;
     [SerializeField, Header("表示させるTextUI")] Text _uiText;
