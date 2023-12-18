@@ -29,8 +29,8 @@
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceInput.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/Shaders/UnlitInput.hlsl"
-#include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
 
 // 頂点シェーダー
