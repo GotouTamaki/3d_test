@@ -5,7 +5,7 @@ public class PlayerMoveRecorder : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
 
-    public Queue<Record> _playerRecords = new Queue<Record>();
+    private Queue<Record> _playerRecords = new Queue<Record>();
     private Record _record = new Record();
 
     /// <summary>フレームのカウントをする</summary>
@@ -23,7 +23,7 @@ public class PlayerMoveRecorder : MonoBehaviour
             _record.time = Time.time;
             _record.input = false;
             _playerRecords.Enqueue(_record);
-            
+
             _flameCount = 0;
         }
 
