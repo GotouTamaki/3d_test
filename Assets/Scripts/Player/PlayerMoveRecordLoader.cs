@@ -1,44 +1,58 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMoveRecordLoader : MonoBehaviour
 {
     private PlayerMoveRecorder _playerMoveRecorder;
-    private Queue<Record> _records;
+    private List<Record> _records;
     private Record _currentRecord;
+    private int _currentIndex = 0;
 
-    private void OnEnable()
+    /// <summary>フレームのカウントをする</summary>
+    private int _flameCount = 0;
+
+    private void Start()
     {
-        _records = GameObject.FindGameObjectWithTag("PlayerMoveRecorder").GetComponent<PlayerMoveRecorder>().PlayerRecords;
-        _currentRecord = _records.Dequeue();
-        StartCoroutine(LoadPlayerMoveRecord());
+        _records = GameObject.FindGameObjectWithTag("PlayerMoveRecorder").GetComponent<PlayerMoveRecorder>()
+            .PlayerRecords;
+        _currentRecord = _records[0];
+        _currentIndex++;
+
+        Debug.Log($"Record : {_currentRecord.PlayerRotation}\nCurrent : {transform.rotation}");
     }
 
-    IEnumerator LoadPlayerMoveRecord()
+    void FixedUpdate()
     {
-        while (_records != null)
+        if (_records == null)
         {
-            while (transform.position != _currentRecord.playerPosition)
+#if UNITY_EDITOR
+            Debug.LogWarning("プレイヤーの記録がありません");
+#endif
+            return;
+        }
+
+        if (_flameCount % 2 == 0)
+        {
+            if (transform.position != _currentRecord.PlayerPosition)
             {
                 //ToDo : 正常に動作しないので治す
-                transform.rotation = _currentRecord.playerRotation;
-                //var speedRate = _currentRecord.palyerPosition.magnitude;
-                var speed = Mathf.Lerp(0f, Vector3.Distance(transform.position, _currentRecord.playerPosition), Time.deltaTime);
-                // 今回のフレームでの移動量を計算
-                var moveVector = new Vector3(_currentRecord.playerPosition.x, 0f, _currentRecord.playerPosition.y) * speed * Time.deltaTime;
-                // 移動先の座標を計算
-                var position = transform.position + moveVector;
+                transform.rotation = _currentRecord.PlayerRotation;
                 // 座標を更新
-                transform.position = position;
-                
-                Debug.Log($"Record : {_currentRecord.playerRotation}\nCurrent : {transform.rotation}");
-                yield return null;
+                transform.position = _currentRecord.PlayerPosition;
+                Debug.Log($"Record : {_currentRecord.PlayerRotation}\nCurrent : {transform.rotation}");
             }
-            Debug.Log("Load");
-            _currentRecord = _records.Dequeue();
-            yield return null;
         }
+        else
+        {
+            Debug.Log("Load");
+            _currentRecord = _records[_currentIndex];
+            _currentIndex++;
+            // 奇数フレームの補間を行う
+            var speed = Vector3.Lerp(transform.position, _currentRecord.PlayerPosition, 0.5f);
+            Debug.Log($"Record : {_currentRecord.PlayerRotation}\nCurrent : {transform.rotation}");
+
+        }
+
+        _flameCount++;
     }
 }

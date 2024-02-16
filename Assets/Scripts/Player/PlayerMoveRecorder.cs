@@ -5,37 +5,45 @@ public class PlayerMoveRecorder : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
 
-    private Queue<Record> _playerRecords = new Queue<Record>();
+    public List<Record> _playerRecords = new List<Record>();
     private Record _record = new Record();
 
     /// <summary>フレームのカウントをする</summary>
     private int _flameCount = 0;
 
-    public Queue<Record> PlayerRecords => _playerRecords;
+    private float _currentTime = 0;
+
+    public List<Record> PlayerRecords => _playerRecords;
 
     void FixedUpdate()
     {
         // 2フレームに1回保存する
         if (_flameCount % 2 == 0)
         {
-            _record.playerPosition = _player.transform.position;
-            _record.playerRotation = _player.transform.rotation;
-            _record.time = Time.time;
-            _record.input = false;
-            _playerRecords.Enqueue(_record);
-
-            _flameCount = 0;
+            var record = new Record(_player.transform.position, _player.transform.rotation, _currentTime,
+                Input.GetButtonDown("Fire1"));
+            _playerRecords.Add(record);
         }
 
-        _flameCount++; // カウントアップ
+        // カウントアップ
+        _flameCount++;
+        _currentTime += Time.fixedDeltaTime;
     }
 }
 
 [System.Serializable]
 public struct Record
 {
-    public Vector3 playerPosition;
-    public Quaternion playerRotation;
-    public float time;
-    public bool input;
+    public Vector3 PlayerPosition;
+    public Quaternion PlayerRotation;
+    public float RecordTime;
+    public bool RecordInput;
+
+    public Record(Vector3 playerPosition, Quaternion playerRotation, float recordTime, bool recordInput)
+    {
+        PlayerPosition = playerPosition;
+        PlayerRotation = playerRotation;
+        RecordTime = recordTime;
+        RecordInput = recordInput;
+    }
 }
