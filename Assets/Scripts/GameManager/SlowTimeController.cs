@@ -2,13 +2,13 @@
 using System.Linq;
 using UnityEngine;
 
-public class ZoneTimeController : MonoBehaviour, IZoneTime
+public class SlowTimeController : MonoBehaviour, ISlowTime
 {
-    public static ZoneTimeController Instance;
+    public static SlowTimeController Instance;
 
-    [SerializeField, Header("時間制限")] private float zoneTimeLimit = 10f;
+    [SerializeField, Header("時間制限")] private float slowTimeLimit = 10f;
 
-    private IZoneTime[] _zoneTimes;
+    private ISlowTime[] _slowTimes; // ISlowTimeを継承したオブジェクト
     private float _timer; // タイマー
     private bool _exitFlag; // 終了時フラグ
     private bool _finishFlag; // 強制終了フラグ
@@ -27,15 +27,15 @@ public class ZoneTimeController : MonoBehaviour, IZoneTime
         }
     }
 
-    /// <summary>ZoneTimeを開始する</summary>
+    /// <summary>SlowTimeを開始する</summary>
     private void OnStartZoneTime()
     {
-        // IZoneTimeを継承しているオブジェクトを非アクティブ含めて検索する
-        _zoneTimes = FindObjectsOfType<MonoBehaviour>(true).OfType<IZoneTime>().ToArray();
+        // ISlowTimeを継承しているオブジェクトを非アクティブ含めて検索する
+        _slowTimes = FindObjectsOfType<MonoBehaviour>(true).OfType<ISlowTime>().ToArray();
 
-        foreach (var zoneTime in _zoneTimes)
+        foreach (var zoneTime in _slowTimes)
         {
-            zoneTime.OnEnterZoneTime();
+            zoneTime.OnEnterSlowTime();
         }
 
         SetFinishFlag(false);
@@ -49,9 +49,9 @@ public class ZoneTimeController : MonoBehaviour, IZoneTime
             // まだExit時の処理をしていなければ
             if (!_exitFlag)
             {
-                foreach (var zoneTime in _zoneTimes)
+                foreach (var zoneTime in _slowTimes)
                 {
-                    zoneTime.OnExitZoneTime();
+                    zoneTime.OnExitSlowTime();
                 }
             }
 
@@ -61,17 +61,17 @@ public class ZoneTimeController : MonoBehaviour, IZoneTime
         if (_timer >= 0)
         {
             // 時間内であれば
-            foreach (var zoneTime in _zoneTimes)
+            foreach (var zoneTime in _slowTimes)
             {
-                zoneTime.OnUpdateZoneTime();
+                zoneTime.OnUpdateSlowTime();
             }
         }
         else if (!_exitFlag)
         {
             // 時間外かつ_exitFlagがまだfalseであれば
-            foreach (var zoneTime in _zoneTimes)
+            foreach (var zoneTime in _slowTimes)
             {
-                zoneTime.OnExitZoneTime();
+                zoneTime.OnExitSlowTime();
             }
 
             SetFinishFlag(true);
@@ -85,18 +85,18 @@ public class ZoneTimeController : MonoBehaviour, IZoneTime
         throw new NotImplementedException();
     }
 
-    public void OnEnterZoneTime()
+    public void OnEnterSlowTime()
     {
-        _timer = zoneTimeLimit;
+        _timer = slowTimeLimit;
         _exitFlag = false;
     }
 
-    public void OnUpdateZoneTime()
+    public void OnUpdateSlowTime()
     {
         throw new NotImplementedException();
     }
 
-    public void OnExitZoneTime()
+    public void OnExitSlowTime()
     {
         _exitFlag = true;
     }
