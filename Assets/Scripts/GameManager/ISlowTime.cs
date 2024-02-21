@@ -10,6 +10,6 @@ public interface IZoneTime
     /// <summary>集中状態中の処理</summary>
     public void OnUpdateZoneTime();
 
-    /// <summary>集中状態ｗｐ終了するときの処理</summary>
+    /// <summary>集中状態を終了するときの処理</summary>
     public void OnExitZoneTime();
 }
