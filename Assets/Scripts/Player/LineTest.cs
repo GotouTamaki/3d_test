@@ -27,7 +27,7 @@ public class LineTest : MonoBehaviour
     {
         _line.startWidth = _lineWidth;
         _line.endWidth = _lineWidth;
-        // LineRenderer‚Ìn“_AI“_‚Ìİ’è
+        // LineRendererã®å§‹ç‚¹ã€çµ‚ç‚¹ã®è¨­å®š
         _line.SetPosition(0, _startTransform.position);
         _line.SetPosition(1, _endTransform.position);
     }
