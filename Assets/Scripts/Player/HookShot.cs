@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class HookShot : MonoBehaviour
 {
-    // <summary>ƒ}ƒYƒ‹‚ÌˆÊ’u</summary>
+    // <summary>ãƒã‚ºãƒ«ã®ä½ç½®</summary>
     [SerializeField] Transform _muzzle = default;
-    /// <summary>ƒ^[ƒQƒbƒg‚ÌˆÊ’u</summary>
-    [SerializeField] GameObject _target = default; /// <summary>’e‚Ìí—Ş</summary>
+    /// <summary>ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®ä½ç½®</summary>
+    [SerializeField] GameObject _target = default; /// <summary>å¼¾ã®ç¨®é¡</summary>
     [SerializeField] WireTest _bullet = null;
 
-    // Šeí‰Šú‰»
+    // å„ç¨®åˆæœŸåŒ–
     float _interval = 1f;
     float _timer = 0;
     Vector2 _r = Vector2.zero;
@@ -23,16 +23,16 @@ public class HookShot : MonoBehaviour
     {
         _timer += Time.deltaTime;
 
-        // ‘å–C‚ÌŠp“x•ÏX
+        // å¤§ç ²ã®è§’åº¦å¤‰æ›´
         this.transform.up = _target.transform.position - this.transform.position;
 
-        // ’e‚Ì”­Ë
+        // å¼¾ã®ç™ºå°„
         if (_timer > _interval)
         {
-            if (Input.GetButtonDown("Fire1"))// ‰Ÿ‚µ‚½‚±‚Æ‚ğ”»’è
+            if (Input.GetButtonDown("Fire1"))// æŠ¼ã—ãŸã“ã¨ã‚’åˆ¤å®š
             {
                 WireTest bullet = Instantiate(_bullet, _muzzle.position, this.transform.rotation);
-                Debug.Log($"¶–C”­ËAƒCƒ“ƒ^[ƒoƒ‹{bullet.GetComponent<WireTest>().Interval}");
+                Debug.Log($"å·¦ç ²ç™ºå°„ã€ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«{bullet.GetComponent<WireTest>().Interval}");
                 _interval = bullet.Interval;
                 _timer = 0f;
             }

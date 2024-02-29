@@ -6,7 +6,7 @@ public class WireTest : MonoBehaviour
     [SerializeField] float _shootSpeed = 1.0f;
     [SerializeField] float _springPower = 5f;
     [SerializeField] Color _lineColor = Color.white;
-    /// <summary>ƒtƒbƒNƒVƒ‡ƒbƒg‚ÌƒCƒ“ƒ^[ƒoƒ‹</summary>
+    /// <summary>ãƒ•ãƒƒã‚¯ã‚·ãƒ§ãƒƒãƒˆã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«</summary>
     [SerializeField] float _interval = 1f;
 
     GameObject _player = null;
@@ -15,17 +15,17 @@ public class WireTest : MonoBehaviour
     LineRenderer _line = null;
     Vector3 _initialPosition = Vector3.zero;
 
-    /// <summary>ƒtƒbƒNƒVƒ‡ƒbƒg‚ÌƒCƒ“ƒ^[ƒoƒ‹‚ÌƒCƒ“ƒ^[ƒoƒ‹‚ğæ“¾‚Å‚«‚Ü‚·</summary>
+    /// <summary>ãƒ•ãƒƒã‚¯ã‚·ãƒ§ãƒƒãƒˆã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒãƒ«ã‚’å–å¾—ã§ãã¾ã™</summary>
     public float Interval { get => _interval; set => _interval = value; }
 
     private void Start()
     {
         _hookRb = GetComponent<Rigidbody>();
         _hookRb.velocity = Vector3.forward * _shootSpeed;
-        // ƒvƒŒƒCƒ„[‚ğæ“¾
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å–å¾—
         _player = GameObject.FindWithTag("Player");
         _hookRb = _player.GetComponent<Rigidbody>();
-        // LineRenderer‚Ìİ’è
+        // LineRendererã®è¨­å®š
         _line = GetComponent<LineRenderer>();
         _line.material = new Material(Shader.Find("Sprites/Default"));
         _line.startWidth = 0.1f;
@@ -38,18 +38,18 @@ public class WireTest : MonoBehaviour
 
     private void Update()
     {
-        // LineRenderer‚Ìn“_AI“_‚Ìİ’è
+        // LineRendererã®å§‹ç‚¹ã€çµ‚ç‚¹ã®è¨­å®š
         _line.SetPosition(0, this.transform.position);
         _line.SetPosition(1, _player.transform.position);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // ƒtƒbƒN‚ğŒÅ’è‚·‚é
+        // ãƒ•ãƒƒã‚¯ã‚’å›ºå®šã™ã‚‹
         _hookRb.Sleep();
-        // ƒvƒŒƒCƒ„[‚ÆƒtƒbƒN‚Ì‹——£‚ğ‘ª’è
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ãƒ•ãƒƒã‚¯ã®è·é›¢ã‚’æ¸¬å®š
         Vector2 _diff = (this.transform.position - _player.transform.position).normalized;
-        // ƒvƒŒƒCƒ„[‚É—Í‚ğ‰Á‚¦‚é
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«åŠ›ã‚’åŠ ãˆã‚‹
         _playerRb.AddForce(_diff * _springPower, ForceMode.Impulse);
         _playerRb.useGravity = false;
     }
