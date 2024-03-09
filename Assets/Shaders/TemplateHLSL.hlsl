@@ -1,30 +1,30 @@
-//#region README i#region‚ª‚È‚º‚©”½‰‚µ‚È‚©‚Á‚½@—vŒŸØj
-// HLSL‚Ìƒeƒ“ƒvƒŒ[ƒgiì’†AUnity‚ÌURP‚ğ‘z’èj
-// hlslƒtƒ@ƒCƒ‹‚Å‘‚­‚±‚Æ‚ÅƒR[ƒhƒGƒfƒBƒ^‚Ì•â•‚ğó‚¯‚é‚±‚Æ‚ª‚Å‚«‚é
+//#region README ï¼ˆ#regionãŒãªãœã‹åå¿œã—ãªã‹ã£ãŸã€€è¦æ¤œè¨¼ï¼‰
+// HLSLã®ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆï¼ˆè©¦ä½œä¸­ã€Unityã®URPã‚’æƒ³å®šï¼‰
+// hlslãƒ•ã‚¡ã‚¤ãƒ«ã§æ›¸ãã“ã¨ã§ã‚³ãƒ¼ãƒ‰ã‚¨ãƒ‡ã‚£ã‚¿ã®è£œåŠ©ã‚’å—ã‘ã‚‹ã“ã¨ãŒã§ãã‚‹
 //
-// QlURL
+// å‚è€ƒURL
 // https://redhologerbera.hatenablog.com/entry/2022/03/08/215227
 // https://redhologerbera.hatenablog.com/entry/2022/11/08/090356
 // https://tips.hecomi.com/entry/2019/10/27/152520
 //
-// iVisual Studio‚Ìê‡jŠg’£‹@”\ HLSL Tools for Visual Studio ‚ª‚ ‚é‚Æ‘‚«‚â‚·‚¢
-// ‚½‚¾‚µA
+// ï¼ˆVisual Studioã®å ´åˆï¼‰æ‹¡å¼µæ©Ÿèƒ½ HLSL Tools for Visual Studio ãŒã‚ã‚‹ã¨æ›¸ãã‚„ã™ã„
+// ãŸã ã—ã€
 // https://tips.hecomi.com/entry/2020/12/20/000908
 // https://tips.hecomi.com/entry/2023/02/25/163637
-// ‚Å‘‚©‚ê‚Ä‚¢‚é‚æ‚¤‚ÉUnity‚É‘Î‰‚·‚é‚½‚ß‚Ìˆ’u‚ª•K—v
-// i‚Ü‚¾‚µ‚Ä‚¢‚È‚¢‚½‚ß—vŒŸØj
+// ã§æ›¸ã‹ã‚Œã¦ã„ã‚‹ã‚ˆã†ã«Unityã«å¯¾å¿œã™ã‚‹ãŸã‚ã®å‡¦ç½®ãŒå¿…è¦
+// ï¼ˆã¾ã ã—ã¦ã„ãªã„ãŸã‚è¦æ¤œè¨¼ï¼‰
 //
-// g‚¤Û‚ÍShaderƒtƒ@ƒCƒ‹“à‚Å
+// ä½¿ã†éš›ã¯Shaderãƒ•ã‚¡ã‚¤ãƒ«å†…ã§
 // #include  "TemplateHLSL.hlsl"
-// ‚Æ‘‚­
+// ã¨æ›¸ã
 //#endregion
 
-// ShaderƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
-#pragma vertex vert		// vert	‚Í”CˆÓ‚Ì–¼‘O‚É•ÏX‰Â”\
-#pragma  fragment frag	// flag	‚Í”CˆÓ‚Ì–¼‘O‚É•ÏX‰Â”\
+// Shaderã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
+#pragma vertex vert		// vert	ã¯ä»»æ„ã®åå‰ã«å¤‰æ›´å¯èƒ½
+#pragma  fragment frag	// flag	ã¯ä»»æ„ã®åå‰ã«å¤‰æ›´å¯èƒ½
 
-// ƒCƒ“ƒNƒ‹[ƒhiˆê•”‚Ì‚İj
-// ShaderLab‚Ì•û‚É•K—v‚È‚à‚Ì‚Ì‚İ‘‚¢‚Ä‹@”\‚ğg‚¢•ª‚¯‚½‚Ù‚¤‚ª—Ç‚¢
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ï¼ˆä¸€éƒ¨ã®ã¿ï¼‰
+// ShaderLabã®æ–¹ã«å¿…è¦ãªã‚‚ã®ã®ã¿æ›¸ã„ã¦æ©Ÿèƒ½ã‚’ä½¿ã„åˆ†ã‘ãŸã»ã†ãŒè‰¯ã„
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceInput.hlsl"
@@ -33,25 +33,27 @@
 #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
 #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
 
-// ’¸“_ƒVƒF[ƒ_[
+
 struct appdata
 {
-	//3Dƒ‚ƒfƒ‹‚©‚çó‚¯æ‚éî•ñi’¸“_À•W‚âuv“™j‚ğŠi”[EéŒ¾
+	//3Dãƒ¢ãƒ‡ãƒ«ã‹ã‚‰å—ã‘å–ã‚‹æƒ…å ±ï¼ˆé ‚ç‚¹åº§æ¨™ã‚„uvç­‰ï¼‰ã‚’æ ¼ç´ãƒ»å®£è¨€
 };
-v2f vert(appdata v)//ƒ‚ƒfƒ‹‚Ì’¸“_‚ÉŠÖ‚·‚éˆ— UnityÀ•W‚Ö‚Ì•ÏŠ·“™
+struct v2f
+{
+	//é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã§ã®å‡¦ç†çµæœã‚’æ ¼ç´ã™ã‚‹
+	//ä¸€èˆ¬çš„ã«Vertex to Fragment ã§v2f
+};
+
+// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
+v2f vert(appdata v)//ãƒ¢ãƒ‡ãƒ«ã®é ‚ç‚¹ã«é–¢ã™ã‚‹å‡¦ç† Unityåº§æ¨™ã¸ã®å¤‰æ›ç­‰
 {
 	v2f o;
-	//ˆ—
+	//å‡¦ç†
 	return o;
 }
 
-// ƒtƒ‰ƒOƒƒ“ƒgƒVƒF[ƒ_[
-struct v2f
-{
-	//’¸“_ƒVƒF[ƒ_[‚Å‚Ìˆ—Œ‹‰Ê‚ğŠi”[‚·‚é
-	//ˆê”Ê“I‚ÉVertex to Fragment ‚Åv2f
-};
+// ãƒ•ãƒ©ã‚°ãƒ¡ãƒ³ãƒˆã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
 float4 frag(v2f i) :SV_Target
 {
-	//ƒRƒ“ƒsƒ…[ƒ^‚Ì‚PƒsƒNƒZƒ‹‚²‚Æ‚ÌF‚ğˆ—‚·‚é
+	//ã‚³ãƒ³ãƒ”ãƒ¥ãƒ¼ã‚¿ã®ï¼‘ãƒ”ã‚¯ã‚»ãƒ«ã”ã¨ã®è‰²ã‚’å‡¦ç†ã™ã‚‹
 }
