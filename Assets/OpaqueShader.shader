@@ -45,16 +45,15 @@ Shader "Custom/Diffuse"
 			{
 				float4 positionOS       : POSITION;
 				float3 normalOS         : NORMAL;
-				float4 tangentOS        : TANGENT;
+			    float4 tangentOS        : TANGENT;
 				float2 uv               : TEXCOORD0;
 			};
 
 			struct Varyings
 			{
 				float2 uv         : TEXCOORD0;
-				float3 positionWS : TEXCOORD1;
-				float3 normalWS   : TEXCOORD2;
-				float  fogCoord   : TEXCOORD3;
+			    float3 normalWS   : TEXCOORD1;
+				float  fogCoord   : TEXCOORD2;
 				float4 positionCS : SV_POSITION;
 
 				UNITY_VERTEX_OUTPUT_STEREO
@@ -68,12 +67,10 @@ Shader "Custom/Diffuse"
 
 				VertexPositionInputs vertexInput = GetVertexPositionInputs(input.positionOS.xyz);
 				output.positionCS = vertexInput.positionCS;
-				output.positionWS = vertexInput.positionWS;
 				output.uv = TRANSFORM_TEX(input.uv, _BaseMap);
-				output.fogCoord = ComputeFogFactor(vertexInput.positionCS.z);
 
 				VertexNormalInputs normalInput = GetVertexNormalInputs(input.normalOS);
-				output.normalWS = normalInput.normalWS;
+			    output.normalWS = normalInput.normalWS;
 
 				return output;
 			}
@@ -82,18 +79,10 @@ Shader "Custom/Diffuse"
 			{
 				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
-				float4 shadowCoord = TransformWorldToShadowCoord(input.positionWS);
-
 				half2 uv = input.uv;
 				half4 texColor = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
 				half3 color = texColor.rgb * _BaseColor.rgb;
 				half alpha = texColor.a * _BaseColor.a;
-
-				Light mainLight = GetMainLight(shadowCoord);
-
-				float NoL = dot(input.normalWS, mainLight.direction);
-				color *= NoL; // Full
-				//color *= (NoL*0.5)+0.5; // Half
 
 				color = MixFog(color, input.fogCoord);
 
